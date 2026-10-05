@@ -1,0 +1,17 @@
+variable,type,meaning,unit_or_coding,role
+_MICHD,Categorical binary,Reported coronary heart disease or myocardial infarction,CDC calculated Yes/No indicator,Dependent outcome
+_AGEG5YR,Ordinal categorical,Age group,CDC 5-year age categories,Primary demographic predictor
+_SEX,Categorical,Sex,CDC-coded categories,Demographic predictor
+_RACEGR3,Categorical,Race/ethnicity grouping,CDC calculated categories,Demographic and disparity predictor
+_EDUCAG,Ordinal categorical,Education level,CDC grouped categories,Socioeconomic predictor
+_INCOMG1,Ordinal categorical,Household income group,CDC grouped categories,Socioeconomic predictor
+_BMI5,Continuous,Body mass index,kg/m^2 multiplied by 100 in source,Health predictor
+_BMI5CAT,Ordinal categorical,BMI category,CDC BMI categories,Health predictor
+_SMOKER3,Categorical,Smoking status,Every day / some days / former / never,Behavioral predictor
+_TOTINDA,Categorical,Leisure-time physical inactivity,CDC calculated Yes/No indicator,Behavioral predictor
+DIABETE4,Categorical,Ever told respondent had diabetes,CDC response categories,Cardiometabolic predictor
+GENHLTH,Ordinal categorical,General health,Excellent to poor,Health-status predictor
+MENTHLTH,Numeric count,Poor mental-health days,Days in past 30 days,Health-status predictor
+_LLCPWT,Continuous weight,Final combined landline/cell survey weight,Survey weight,Population estimation
+_STSTR,Categorical design,Sample stratum,CDC design code,Complex survey design
+_PSU,Categorical design,Primary sampling unit,CDC design code,Complex survey design
