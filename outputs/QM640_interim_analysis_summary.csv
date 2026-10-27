@@ -1,0 +1,5 @@
+Research_Question,Analysis,Status,Evidence,Remaining
+RQ1,Survey-adjusted prevalence,Completed - prevalence and CIs,"Overall, sex, and 13 age-group results",Survey-adjusted hypothesis tests
+RQ2,Risk-factor associations,Preliminary analysis completed,Weighted EDA and unweighted chi-square tests,Survey-adjusted association tests
+RQ3,Multivariable logistic regression,Exploratory model completed,Model-based odds ratios and approximate CIs,Survey-adjusted explanatory model
+RQ4,Four-model classification,Preliminary comparison completed,"AUROC, AUPRC, precision, recall, F1 and confusion matrices",Full-sample validation and threshold tuning

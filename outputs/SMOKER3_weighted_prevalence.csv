@@ -1,0 +1,5 @@
+Category_Code,Category,Sample_Size,Positive_Cases,Weighted_Prevalence_Percent
+1.0,Current Daily,32628,4372,10.78
+2.0,Current Occasional,13776,1497,8.17
+3.0,Former,118181,16647,11.43
+4.0,Never,256497,17071,4.64

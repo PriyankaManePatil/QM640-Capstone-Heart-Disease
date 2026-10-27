@@ -1,0 +1,5 @@
+Model,True_Negative,False_Positive,False_Negative,True_Positive
+Logistic Regression,7798,3079,231,892
+Decision Tree,8232,2645,391,732
+Random Forest,7888,2989,265,858
+Gradient Boosting,10852,25,1094,29

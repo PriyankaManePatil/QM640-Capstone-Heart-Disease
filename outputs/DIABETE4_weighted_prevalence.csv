@@ -1,0 +1,5 @@
+Category_Code,Category,Sample_Size,Positive_Cases,Weighted_Prevalence_Percent
+1.0,Diabetes,64586,14217,18.86
+2.0,During Pregnancy,3365,182,4.72
+3.0,No Diabetes,372683,26375,4.92
+4.0,Prediabetes,11059,1480,11.03

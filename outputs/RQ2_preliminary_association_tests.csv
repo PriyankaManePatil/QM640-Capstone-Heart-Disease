@@ -1,0 +1,5 @@
+Risk_Factor,Sample_Size,Chi_Square,Degrees_of_Freedom,P_Value,Minimum_Expected_Count,Analysis_Type
+Smoking Status,421082,5962.799863427443,3,0.0,1295.1171315800723,Unweighted exploratory Pearson chi-square
+Physical Activity,451270,4312.576079709586,1,0.0,9751.75061936313,Unweighted exploratory Pearson chi-square
+BMI Category,410281,682.1791624221223,3,1.535329398255188e-147,697.6252129637979,Unweighted exploratory Pearson chi-square
+Diabetes Status,451693,14756.952715261017,3,0.0,314.7817433522326,Unweighted exploratory Pearson chi-square

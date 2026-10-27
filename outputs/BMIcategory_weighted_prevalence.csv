@@ -1,0 +1,5 @@
+Category_Code,Category,Sample_Size,Positive_Cases,Weighted_Prevalence_Percent
+1.0,Underweight,7259,666,6.2
+2.0,Normal,119864,9440,5.43
+3.0,Overweight,145112,14309,7.38
+4.0,Obese,138046,15015,8.13

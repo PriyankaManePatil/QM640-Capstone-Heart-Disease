@@ -1,0 +1,9 @@
+Analysis,Filename,Status
+RQ1 Overall,RQ1_overall_survey_adjusted.csv,Available
+RQ1 Sex,RQ1_sex_survey_adjusted.csv,Available
+RQ1 Age,RQ1_age_survey_adjusted.csv,Available
+RQ2 Tests,RQ2_preliminary_association_tests.csv,Available
+RQ3 Odds Ratios,RQ3_preliminary_adjusted_odds_ratios.csv,Available
+RQ4 Models,RQ4_preliminary_model_comparison.csv,Available
+RQ4 Confusion Matrices,RQ4_confusion_matrices.csv,Available
+Modeling Metadata,modeling_metadata.csv,Available

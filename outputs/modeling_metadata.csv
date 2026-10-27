@@ -1,0 +1,9 @@
+Metric,Value
+Original eligible sample,452464
+Preliminary modeling sample,60000
+Training records,48000
+Testing records,12000
+Positive training cases,4491
+Positive test cases,1123
+Random seed,42
+Train/test split,80/20 stratified
