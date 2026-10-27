@@ -1,59 +1,53 @@
 # QM640 Capstone – Heart Disease
 
-## Project Title
-**Population-Level Classification and Risk-Factor Analysis of Coronary Heart Disease or Myocardial Infarction Among U.S. Adults Using CDC BRFSS 2024 Data**
+**Project:** Population-Level Classification and Risk-Factor Analysis of Coronary Heart Disease or Myocardial Infarction Among U.S. Adults Using CDC BRFSS 2024 Data
 
-## Course
-QM 640 – Data Analytics Capstone  
-Walsh College
+**Course:** QM 640 – Data Analytics Capstone, Walsh College  
+**Student:** Priyanka Mane-Patil  
+**Project stage:** Interim analysis completed; final validation and survey-design-adjusted inferential analyses remain in progress.
 
-## Student
-Priyanka Mane-Patil
+## Overview
 
-## Project Overview
-This capstone analyzes demographic, behavioral, socioeconomic, and health-related factors associated with self-reported coronary heart disease (CHD) or myocardial infarction (MI) among U.S. adults using the 2024 Behavioral Risk Factor Surveillance System (BRFSS) public-use dataset from the U.S. Centers for Disease Control and Prevention (CDC).
+This project studies factors associated with **self-reported coronary heart disease (CHD) or myocardial infarction (MI)** among U.S. adults using the CDC's 2024 Behavioral Risk Factor Surveillance System (BRFSS). It reports population-oriented descriptive prevalence, exploratory associations and adjusted odds ratios, and preliminary machine-learning classification results. BRFSS is a cross-sectional, self-reported survey: these analyses do **not** establish causation, predict future cardiovascular events, or provide a clinical diagnostic tool.
 
-The study combines survey-weighted descriptive statistics, hypothesis testing, multivariable logistic regression, and supervised machine-learning classification. Because BRFSS is cross-sectional and self-reported, the project focuses on association and classification of prevalent CHD/MI rather than causal inference or prospective clinical risk prediction.
+## Research questions
 
-## Primary Outcome
-CDC calculated variable `_MICHD`:
-- 1 = Respondent reported coronary heart disease or myocardial infarction
-- 2 = Respondent did not report coronary heart disease or myocardial infarction
+1. **RQ1 — Prevalence:** How does reported CHD/MI prevalence differ across age and sex groups?
+2. **RQ2 — Associations:** Are smoking, physical inactivity, BMI category, and diabetes associated with reported CHD/MI?
+3. **RQ3 — Adjusted associations:** Which measured factors are associated with CHD/MI after accounting for demographic and socioeconomic covariates?
+4. **RQ4 — Classification:** How well do supervised learning models classify reported CHD/MI status?
 
-Variables used to construct `_MICHD` will not be used as predictors in machine-learning models to avoid target leakage.
+## Data and outcome
 
-## Research Questions
-1. Does reported CHD/MI prevalence differ across age and sex groups?
-2. Are smoking, physical inactivity, BMI category, and diabetes associated with reported CHD/MI?
-3. After adjustment for demographic and socioeconomic characteristics, which measured factors are independently associated with the odds of reported CHD/MI?
-4. How accurately can supervised machine-learning models classify reported CHD/MI status using demographic, behavioral, and health predictors?
+- **Source:** [CDC BRFSS 2024 annual public-use data](https://www.cdc.gov/brfss/annual_data/annual_2024.html).
+- **Outcome:** CDC calculated variable `_MICHD`, indicating reported CHD or MI (source codes 1 = Yes; 2 = No). The analysis creates a binary `heart_disease` outcome.
+- **Eligible cleaned sample:** 452,464 respondents, including 42,338 positive and 410,126 negative records.
+- **Survey design variables:** `_LLCPWT` (weight), `_STSTR` (stratum), and `_PSU` (primary sampling unit).
+- **Data availability:** The original large BRFSS file and intermediate Parquet datasets are not stored in this repository. See [data access instructions](data/README_data_access.md) and the [variable dictionary](data/data_dictionary.csv). Reproduce the analysis using the official CDC data and the notebook.
 
-## Data Source
-CDC BRFSS 2024 annual public-use data and documentation:  
-https://www.cdc.gov/brfss/annual_data/annual_2024.html
+## Interim results
 
-The dataset is publicly available and does not require an account or data-use application.
+| Research question | Interim evidence | Interpretation / status |
+| --- | --- | --- |
+| RQ1 | Survey-adjusted overall prevalence **6.80%** (95% CI **6.66%–6.94%**); male **8.12%**, female **5.53%** | Descriptive survey-adjusted estimates completed; further formal comparisons remain. |
+| RQ2 | Weighted prevalence charts and exploratory Pearson chi-square tests for smoking, physical activity, BMI category, and diabetes | Descriptive weighted comparisons completed; hypothesis tests are **not survey-design-adjusted**. |
+| RQ3 | Exploratory multivariable logistic regression with odds-ratio table | Based on an unweighted, regularized model; reported confidence intervals are approximate and should **not** be interpreted as design-adjusted inference. |
+| RQ4 | Preliminary comparison of logistic regression, decision tree, random forest, and gradient boosting | Stratified 60,000-record modeling sample (48,000 train; 12,000 test); additional validation and threshold tuning remain. |
 
-## Planned Sample
-The project synopsis specifies a minimum analytic sample of **N = 56,920**, selected as the largest requirement across RQ1–RQ4 after accounting for model-evaluation needs.
+**RQ4 preliminary model metrics** (from [model comparison CSV](outputs/RQ4_preliminary_model_comparison.csv)):
 
-## Planned Analytical Methods
-- Survey-weighted descriptive statistics
-- Prevalence estimates with 95% confidence intervals
-- Chi-square / survey-adjusted association testing
-- Unadjusted and adjusted odds ratios
-- Multivariable logistic regression
-- Baseline logistic-regression classifier
-- Decision tree
-- Random forest
-- Gradient boosting
-- Cross-validation
-- Leakage-safe preprocessing
-- Class-imbalance-aware evaluation
-- AUROC, AUPRC, sensitivity, specificity, precision, F1-score, balanced accuracy, confusion matrix, and Brier score
+| Model | AUROC | AUPRC | Precision | Recall | F1 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Logistic regression | 0.824 | 0.318 | 0.225 | 0.794 | 0.350 |
+| Decision tree | 0.764 | 0.263 | 0.217 | 0.652 | 0.325 |
+| Random forest | 0.809 | 0.311 | 0.223 | 0.764 | 0.345 |
+| Gradient boosting | 0.821 | 0.323 | 0.537 | 0.026 | 0.049 |
 
-## Repository Structure
-```
+The prespecified recall target of at least 0.80 was **not met** by any of these models at the evaluated thresholds. All four met the exploratory precision target of at least 0.20. Model results are preliminary and must not be presented as external or clinical validation.
+
+## Repository structure
+
+```text
 QM640-Capstone-Heart-Disease/
 ├── README.md
 ├── requirements.txt
@@ -62,23 +56,38 @@ QM640-Capstone-Heart-Disease/
 │   └── data_dictionary.csv
 ├── notebooks/
 │   ├── 01_import_clean.ipynb
+│   ├── 01_import_clean_BRFSS_2024.ipynb
 │   ├── 02_eda_rq1.ipynb
 │   ├── 03_rq2_rq3_statistics.ipynb
 │   └── 04_rq4_modeling.ipynb
 ├── src/
-│   ├── preprocessing.py
-│   ├── survey_analysis.py
-│   └── modeling.py
-└── outputs/
-    ├── tables/
-    └── figures/
+├── outputs/
+│   ├── *.csv               # 23 exported analysis and validation tables
+│   ├── figures/            # 6 exported PNG figures
+│   └── tables/
 ```
 
-## Reproducibility
-Raw CDC files will not be re-hosted unless appropriate. The `data/README_data_access.md` file contains authoritative source links and instructions for obtaining the raw BRFSS data. All transformations and analysis steps will be documented in notebooks and reusable source files.
+The [BRFSS 2024 analysis notebook](notebooks/01_import_clean_BRFSS_2024.ipynb) contains the completed interim workflow. Some other notebook and source paths may be preliminary scaffolding; refer to the executed analysis notebook and exported evidence for completed results.
 
-## Ethical and Methodological Notes
-This project uses publicly released, de-identified survey data. Results will be reported at aggregate level. The project will not make causal claims, provide patient-level diagnosis, or be presented as a replacement for validated clinical cardiovascular risk tools.
+## Key evidence files
 
-## Status
-Capstone synopsis and repository setup in progress.
+- [Overall weighted prevalence](outputs/RQ1_overall_survey_adjusted.csv), [sex estimates](outputs/RQ1_sex_survey_adjusted.csv), and [age-group estimates](outputs/RQ1_age_survey_adjusted.csv)
+- [RQ2 exploratory association tests](outputs/RQ2_preliminary_association_tests.csv)
+- [RQ3 report-ready exploratory odds ratios](outputs/RQ3_report_ready_odds_ratios.csv)
+- [RQ4 preliminary model comparison](outputs/RQ4_preliminary_model_comparison.csv) and [confusion matrices](outputs/RQ4_confusion_matrices.csv)
+- [Modeling sample and split metadata](outputs/modeling_metadata.csv)
+- [Interim analysis status summary](outputs/QM640_interim_analysis_summary.csv) and [output validation](outputs/final_output_validation.csv)
+- [Charts and figures](outputs/figures/)
+
+## Reproducibility and methodological cautions
+
+1. Obtain the official BRFSS 2024 data and documentation from the CDC. Do not commit large raw files or private access tokens.
+2. Review the data access instructions, dictionary, requirements, and executed notebook before rerunning.
+3. Distinguish **survey-weighted prevalence** from **unweighted exploratory hypothesis tests and modeling**; do not label the latter survey-adjusted.
+4. Avoid leakage from variables used to construct `_MICHD` into classification features.
+5. Treat regularized-model odds ratios and approximate confidence intervals as exploratory until appropriate inferential procedures are completed.
+6. Planned next steps include survey-adjusted association tests, an appropriately specified explanatory model, fuller model validation, and threshold evaluation.
+
+## Ethics and limitations
+
+This analysis uses public-use, de-identified survey data and reports aggregate findings. Self-report, missing data, residual confounding, survey design, class imbalance, and the cross-sectional study design limit interpretation. No causal, individual-diagnostic, or prospective risk claims are made.
